@@ -7,7 +7,8 @@ console.log("hello world");
 var appObject = {
 
     title: "Simply Title",
-    desc: "yav sen kimsin"
+    subtitle: "yav sen kimsin",
+    options: ['One', 'Two']
 
 };
 
@@ -20,11 +21,17 @@ var template = React.createElement(
         " ",
         appObject.title
     ),
-    React.createElement(
+    appObject.subtitle && React.createElement(
         "p",
         null,
         "\xA0",
-        appObject.desc,
+        appObject.subtitle,
+        " "
+    ),
+    React.createElement(
+        "p",
+        null,
+        appObject.options.length > 0 ? 'Here are your options' : 'No options',
         " "
     ),
     React.createElement(
@@ -50,11 +57,11 @@ var template = React.createElement(
 
 var user = {
     name: 'Regnar',
-    age: 12,
-    userLocation: 'Kattegat'
+    age: 19,
+    location: 'Rize'
 };
 
-var userName = 'Ragnar HasanKeyf F.';
+var userName = 'Ragnar HasanKeyf.';
 var userAge = 13;
 var userLocation = 'Kattegat';
 
@@ -64,23 +71,32 @@ var template2 = React.createElement(
     React.createElement(
         "h1",
         null,
-        userName.toUpperCase() + '!'
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         "p",
         null,
-        "From: ",
-        userLocation.toLowerCase()
-    ),
-    React.createElement(
-        "p",
-        null,
-        "Age: ",
+        " Age: ",
         user.age * 12,
         " "
-    )
+    ),
+    getLocation(user.location)
 );
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            "p",
+            null,
+            " Location: ",
+            location,
+            " "
+        );
+    } else {
+        return undefined;
+    }
+}
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template2, appRoot);
+ReactDOM.render(template, appRoot);

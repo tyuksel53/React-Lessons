@@ -2,17 +2,19 @@ console.log("hello world");
 
 //JSX JavaScript XML
 
-var appObject = {
+const appObject = {
 
     title : "Simply Title",
-    desc : "yav sen kimsin"
+    subtitle : "yav sen kimsin",
+    options : ['One', 'Two']
 
 };
 
-var template = (
+const template = (
     <div>
         <h2> {appObject.title}</h2>
-        <p> {appObject.desc} </p>
+        {appObject.subtitle && <p> {appObject.subtitle} </p> }
+        <p>{appObject.options.length > 0 ? 'Here are your options' : 'No options'} </p>
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
@@ -21,24 +23,33 @@ var template = (
     </div>
 );
 
-var user = {
+const user = {
     name : 'Regnar',
-    age : 12,
-    userLocation : 'Kattegat'
+    age : 19,
+    location : 'Rize'
 };
 
-var userName = 'Ragnar HasanKeyf F.';
-var userAge = 13;
-var userLocation = 'Kattegat';
+const userName = 'Ragnar HasanKeyf.';
+const userAge = 13;
+const userLocation = 'Kattegat';
 
-var template2 = (
+const template2 = (
     <div>
-        <h1>{userName.toUpperCase() + '!'}</h1>
-        <p>From: {userLocation.toLowerCase()}</p>
-        <p>Age: {user.age * 12} </p>
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        { (user.age && user.age >= 18)  &&  <p> Age: {user.age * 12} </p>}
+        {getLocation(user.location)}
     </div>
 );
 
-var appRoot = document.getElementById('app');
+function getLocation(location) {
+    if(location){
+        return <p> Location: {location} </p>;
+    } else {
+        return undefined;
+    }
+}
 
-ReactDOM.render(template2, appRoot);
+
+const appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);

@@ -1,55 +1,54 @@
-console.log("hello world");
-
-//JSX JavaScript XML
+const appRoot = document.getElementById('app');
 
 const appObject = {
 
     title : "Simply Title",
     subtitle : "yav sen kimsin",
-    options : ['One', 'Two']
+    options : []
 
 };
 
-const template = (
-    <div>
-        <h2> {appObject.title}</h2>
-        {appObject.subtitle && <p> {appObject.subtitle} </p> }
-        <p>{appObject.options.length > 0 ? 'Here are your options' : 'No options'} </p>
-        <ol>
-            <li>Item One</li>
-            <li>Item Two</li>
-            <li>Item Three</li>
-        </ol>
-    </div>
-);
+const onSubmitForm = (e) => {
+   e.preventDefault();
 
-const user = {
-    name : 'Regnar',
-    age : 19,
-    location : 'Rize'
-};
+   const value = e.target.elements.option.value;
 
-const userName = 'Ragnar HasanKeyf.';
-const userAge = 13;
-const userLocation = 'Kattegat';
+   if(value){
+       appObject.options.push(value);
+       e.target.elements.option.value = "";
+       renderReactApp();
+   }
 
-const template2 = (
-    <div>
-        <h1>{user.name ? user.name : 'Anonymous'}</h1>
-        { (user.age && user.age >= 18)  &&  <p> Age: {user.age * 12} </p>}
-        {getLocation(user.location)}
-    </div>
-);
-
-function getLocation(location) {
-    if(location){
-        return <p> Location: {location} </p>;
-    } else {
-        return undefined;
-    }
+   console.log("Submit fired!")
 }
 
+const removeAll = () => {
+    appObject.options = [];
+    renderReactApp();
+}
 
-const appRoot = document.getElementById('app');
+const renderReactApp = () => {
+    const template = (
+        <div>
+            <h2> {appObject.title}</h2>
+            {appObject.subtitle && <p> {appObject.subtitle} </p> }
+            <p>{appObject.options.length > 0 ? 'Here are your options' : 'No options'} </p>
+            <p>{appObject.options.length}</p>
+            <button onClick={removeAll}>Remove All</button>
+            <ol>
+                <li>Item One</li>
+                <li>Item Two</li>
+                <li>Item Three</li>
+            </ol>
+            <form onSubmit={onSubmitForm}>
+                <input type="text" name="option" />
+                <button>Add option</button>
+            </form>
+        </div>
+    );
 
-ReactDOM.render(template, appRoot);
+    ReactDOM.render(template, appRoot);
+}
+
+renderReactApp();
+

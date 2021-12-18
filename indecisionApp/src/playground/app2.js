@@ -1,3 +1,28 @@
+const user = {
+    name : 'Regnar',
+    age : 19,
+    location : 'Rize'
+};
+
+const userName = 'Ragnar HasanKeyf.';
+const userAge = 13;
+const userLocation = 'Kattegat';
+
+const template2 = (
+    <div>
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        { (user.age && user.age >= 18)  &&  <p> Age: {user.age * 12} </p>}
+        {getLocation(user.location)}
+    </div>
+);
+
+function getLocation(location) {
+    if(location){
+        return <p> Location: {location} </p>;
+    } else {
+        return undefined;
+    }
+}
 
 let count = 0;
 

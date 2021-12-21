@@ -1,99 +1,41 @@
-"use strict";
+'use strict';
 
 var appRoot = document.getElementById('app');
 
-var appObject = {
+var isVisible = false;
 
-    title: "Simply Title",
-    subtitle: "yav sen kimsin",
-    options: []
+var onToggleButtonClicked = function onToggleButtonClicked(e) {
 
+    isVisible = !isVisible;
+
+    renderPage();
 };
 
-var onSubmitForm = function onSubmitForm(e) {
-    e.preventDefault();
-
-    var value = e.target.elements.option.value;
-
-    if (value) {
-        appObject.options.push(value);
-        e.target.elements.option.value = "";
-        renderReactApp();
-    }
-
-    console.log("Submit fired!");
-};
-
-var removeAll = function removeAll() {
-    appObject.options = [];
-    renderReactApp();
-};
-
-var renderReactApp = function renderReactApp() {
+var renderPage = function renderPage() {
     var template = React.createElement(
-        "div",
+        'div',
         null,
         React.createElement(
-            "h2",
+            'h1',
             null,
-            " ",
-            appObject.title
-        ),
-        appObject.subtitle && React.createElement(
-            "p",
-            null,
-            "\xA0",
-            appObject.subtitle,
-            " "
+            'Visibility Toggle'
         ),
         React.createElement(
-            "p",
-            null,
-            appObject.options.length > 0 ? 'Here are your options' : 'No options',
-            " "
+            'button',
+            { onClick: onToggleButtonClicked },
+            isVisible ? 'Hide details' : 'Show Details'
         ),
-        React.createElement(
-            "p",
-            null,
-            appObject.options.length
-        ),
-        React.createElement(
-            "button",
-            { onClick: removeAll },
-            "Remove All"
-        ),
-        React.createElement(
-            "ol",
+        isVisible && React.createElement(
+            'div',
             null,
             React.createElement(
-                "li",
+                'p',
                 null,
-                "Item One"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item Two"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item Three"
-            )
-        ),
-        React.createElement(
-            "form",
-            { onSubmit: onSubmitForm },
-            React.createElement("input", { type: "text", name: "option" }),
-            React.createElement(
-                "button",
-                null,
-                "Add option"
+                'Jesse wake up!'
             )
         )
     );
-
     ReactDOM.render(template, appRoot);
 };
 
-renderReactApp();
+renderPage();

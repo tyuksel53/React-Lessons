@@ -1,18 +1,3 @@
-//class must start with Upper latter
-
-class IndecisionApp extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header />
-                <Action />
-                <Options />
-                <AddOption/>
-            </div>
-        );
-    }
-}
-
 class Header extends React.Component {
     render(){
         return (
@@ -34,24 +19,16 @@ class Action extends React.Component {
     }
 }
 
-class Options extends React.Component {
+class Option extends React.Component {
     render() {
         return (
             <div>
                 <ul>
-                    <Option/>
-                    <Option/>
-                    <Option/>
+                    <li>Option 1</li>
+                    <li>Option 2</li>
+                    <li>Option 3</li>
                 </ul>
             </div>
-        );
-    }
-}
-
-class Option extends React.Component {
-    render() {
-        return (
-            <li>Option here</li>
         );
     }
 }
@@ -64,4 +41,13 @@ class AddOption extends React.Component {
     }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+const jsx = (
+    <div>
+        <Header />
+        <Action />
+        <Option />
+        <AddOption/>
+    </div>
+)
+
+ReactDOM.render(jsx, document.getElementById('app'))

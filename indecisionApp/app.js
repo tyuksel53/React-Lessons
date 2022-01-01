@@ -1,139 +1,56 @@
-const obj = {
-    name: "Vikram",
-    getName(){
-        return this.name;
+ class CounterApp extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.addFunc = this.addFunc.bind(this);
+        this.minusFunc = this.minusFunc.bind(this);
+        this.resetFunc = this.resetFunc.bind(this);
+        
+        this.state = {
+            counter : 0
+        };
     }
-}
 
-console.log(obj.getName());
+    addFunc() {
+        this.setState((prevState) => {
+            let newState = prevState;
+            newState.counter +=1;
+            return newState;
+        });
+    }
 
-const getName = obj.getName.bind(obj);
+    minusFunc() {
+        this.setState((prevState) => {
+            let newState = prevState;
+            newState.counter +=-1;
+            return newState;
+        });
+    }
 
-console.log(getName());
+    resetFunc() {
+        this.setState((prevState) => {
+            let newState = prevState;
+            newState.counter = 0;
+            return newState;
+        });
+    }
 
-const getNameV2 = obj.getName.bind( {name : "Taha"});
-
-console.log(getNameV2());
-
-//class must start with Upper latter
-
-class IndecisionApp extends React.Component {
     render() {
-        const title = "IndecisionApp";
-        const subtitle = "Put your life in the hands of a computer";
-        const options = ['Thing one', 'Thing two', 'Thing three']
         return (
             <div>
-                <Header  title={title} subtitle={subtitle} />
-                <Action />
-                <Options arryData={options} />
-                <Form arrayData={options} />
+                <Header counter={this.state.counter} />
+                <button onClick={this.addFunc} >+1</button>
+                <button onClick={this.minusFunc} >-1</button>
+                <button onClick={this.resetFunc} >Reset</button>
             </div>
-        );
-    }
-}
+        )
+     }
+ }
 
 class Header extends React.Component {
     render(){
-        console.log(this.props)
-        return (
-            <div>
-                <h1>{this.props.title}</h1>
-                <h2>{this.props.subtitle}</h2>
-            </div>
-        );
+        return <h1>Count: {this.props.counter}</h1>
     }
 }
 
-class RemoveAllButton extends React.Component {
-    removeAll(){
-        alert('hello');
-    }
-    render(){
-        return (<button onClick={this.removeAll} >Remove All</button>)
-    }
-
-}
-
-class Action extends React.Component { 
-    handlePick(){
-     alert('jesse');
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.handlePick} >What should I do?</button>
-            </div>
-        );
-    }
-}
-
-class Options extends React.Component {
-    render() {
-        return (
-            <div>
-                <RemoveAllButton />
-                {
-                    //<p>{this.props.arryData.length}</p>}
-                }
-                <ul>
-                    {
-                        this.props.arryData.map((element) => {
-                            return <Option key={element} text={element}></Option>
-                        })
-                    }
-                </ul>
-            </div>
-        );
-    }
-}
-
-class Option extends React.Component {
-    render() {
-        return (
-            <li>{this.props.text}</li>
-        );
-    }
-}
-
-class AddOption extends React.Component {
-    render() {
-        return (
-            <button>Add Option</button>
-        );
-    }
-}
-
-class Form extends React.Component {
-
-    constructor(props){
-        super(props);
-        this.onSubmitForm = this.onSubmitForm.bind(this);
-    }
-
-    onSubmitForm(e) {
-        e.preventDefault();
-        
-        let val = e.target.elements.optionInput.value;
-
-        if(val){
-            this.props.arrayData.push(val);
-        }
-
-        console.log(this.props.arrayData);
-    }
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.onSubmitForm}>
-                    <input name="optionInput"></input>
-                    <AddOption />
-                </form>
-            </div>
-            
-        )
-    }
-
-}
-
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+ ReactDOM.render(<CounterApp/> , document.getElementById('app'));

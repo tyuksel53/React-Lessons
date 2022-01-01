@@ -1,4 +1,4 @@
-const user = {
+/*const user = {
     name : 'Regnar',
     age : 19,
     location : 'Rize'
@@ -65,4 +65,4 @@ const renderReactApp = () => {
     ReactDOM.render(templateTwo, appRoot);
 }
 
-renderReactApp();
+renderReactApp(); */

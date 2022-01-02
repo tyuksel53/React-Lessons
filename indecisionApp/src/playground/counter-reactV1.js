@@ -2,72 +2,61 @@ class CounterApp extends React.Component {
     
     constructor(props) {
         super(props);
+        this.addFunc = this.addFunc.bind(this);
+        this.minusFunc = this.minusFunc.bind(this);
+        this.resetFunc = this.resetFunc.bind(this);
+        
         this.state = {
-            counter : 0
+            counter : 0,
+            name : "taha"
         };
     }
 
+    addFunc() {
+        this.setState((prevState) => {
+            let newState = prevState;
+            newState.counter +=1;
+            return newState;
+        });
+    }
+
+    minusFunc() {
+        this.setState((prevState) => {
+            return {
+                counter : prevState.counter - 1
+            }
+        });
+    }
+
+    resetFunc() {
+        this.setState((prevState) => {
+            return {
+                counter : 0
+            }
+        });
+
+        // this.setState({
+        //     counter : 0
+        // });
+    }
+
     render() {
-        let counterVal = 0;
         return (
             <div>
+                <p> {this.state.name}</p>
                 <Header counter={this.state.counter} />
-                <Button text="+1" operationType="1" value={counterVal} />
-                <Button text="-1" operationType="2" value={counterVal}  />
-                <Button text="Reset" operationType="3" value={counterVal}  />
+                <button onClick={this.addFunc} >+1</button>
+                <button onClick={this.minusFunc} >-1</button>
+                <button onClick={this.resetFunc} >Reset</button>
             </div>
         )
      }
  }
 
- class Header extends React.Component {
-     render(){
-         return <h1>Count: {this.props.counter}</h1>
-     }
- }
-
- class Button extends React.Component {
-
-    constructor(props){
-        super(props);
-        this.onClickFunc = this.onClickFunc.bind(this);
-    }
-
-    addFunc() {
-        
-    }
-
-    minusFunc() {
-        console.log("minus");
-    }
-
-    resetFunc() {
-        console.log("reset");
-    }
-
-    onClickFunc() {
-        //console.log(this.props);
-        
-        switch(this.props.operationType){
-            case "1" : {
-                this.addFunc()
-                break;
-            }
-            case "2" : {
-                this.minusFunc();
-                break;
-            }
-            case "3" : {
-                this.resetFunc();
-                break;
-            }
-        }
-    }
-
+class Header extends React.Component {
     render(){
-        return <button onClick={this.onClickFunc} >{this.props.text}</button>
+        return <h1>Count: {this.props.counter}</h1>
     }
-
- }
+}
 
  ReactDOM.render(<CounterApp/> , document.getElementById('app'));

@@ -4,7 +4,7 @@ class VisibilityApp extends React.Component {
         super(props);
         this.onClickFunc = this.onClickFunc.bind(this);
         this.state = {
-            buttonText : "Show",
+            buttonText : props.buttonText,
             isVisiable : false
         };
     }
@@ -29,4 +29,8 @@ class VisibilityApp extends React.Component {
     }
 }
 
-ReactDOM.render(<VisibilityApp/>, document.getElementById('app'));
+// VisibilityApp.defaultProps = {
+//     buttonText : "Show"
+// }
+
+ReactDOM.render(<VisibilityApp buttonText={"Has mundi"}/>, document.getElementById('app'));

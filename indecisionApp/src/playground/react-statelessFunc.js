@@ -7,7 +7,6 @@ class IndecisionApp extends React.Component {
         this.handleResetOptions = this.handleResetOptions.bind(this);
         this.handleAddOptions = this.handleAddOptions.bind(this);
         this.handleActionCommand = this.handleActionCommand.bind(this);
-        this.handleRemoveItem = this.handleRemoveItem.bind(this);
     }
 
     handleActionCommand() {
@@ -19,35 +18,12 @@ class IndecisionApp extends React.Component {
         alert(this.state.options[randomNum]);
     }
 
-    handleRemoveItem(element) {
-        // console.log(element);
-        // const index = this.state.options.indexOf(element);
-        // console.log(index);
-        // if(index > -1){
-        //     this.setState((prevState) => {
-        //         const newState = prevState.options.filter(item => item !== element)
-        //         console.log(newState);
-        //         return ({
-        //             options: newState
-        //         });
-        //     });
-        // }
-
-        this.setState((prevState) => ({options : prevState.options.filter(item => item !== element)}));
-
-    }
-
     handleResetOptions() {
-        // this.setState((prevState) => {
-        //     return {
-        //         options : []
-        //     }
-        // });
-        // retruned arrow object
-        this.setState(() => ({
-            options: []
-        }));
-
+        this.setState((prevState) => {
+            return {
+                options : []
+            }
+        });
     }
 
     handleAddOptions(val) {
@@ -58,16 +34,13 @@ class IndecisionApp extends React.Component {
             return 'The item your are adding is already in the list';
         }
 
-        // this.setState((prevState) => {
-        //     //prevState.options.push(val);
-        //     const newStateOption = prevState.options.concat([val]);
-        //     return {
-        //         options : newStateOption
-        //     }
-        // });
-
-        this.setState((prevState) => ({options: prevState.options.concat(val)}))
-
+        this.setState((prevState) => {
+            //prevState.options.push(val);
+            const newStateOption = prevState.options.concat([val]);
+            return {
+                options : newStateOption
+            }
+        });
     }
 
     render() {
@@ -77,7 +50,7 @@ class IndecisionApp extends React.Component {
             <div>
                 <Header subtitle={''} />
                 <Action hasOptions={this.state.options.length == 0} fireEvent={this.handleActionCommand}/>
-                <Options arryData={this.state.options} removeAllFnc={this.handleResetOptions} removeItem={this.handleRemoveItem} />
+                <Options arryData={this.state.options} removeAllFnc={this.handleResetOptions} />
                 <Form 
                     arrayData={this.state.options}
                     handleAddOptions={this.handleAddOptions}
@@ -123,15 +96,10 @@ class Options extends React.Component {
     constructor(props) {
         super(props);
         this.removeAll = this.removeAll.bind(this);
-        this.removeItemTarsus = this.removeItemTarsus.bind(this);
     }
 
     removeAll(){
         this.props.removeAllFnc();
-    }
-
-    removeItemTarsus(val){
-        this.props.removeItem(val);
     }
 
     render() {
@@ -141,9 +109,8 @@ class Options extends React.Component {
                 <button onClick={this.removeAll} >Remove All</button>
                 <ul>
                     {
-                        this.props.arryData.map((element, i) => {
-                            return <li key={i}>{element}  <button id={i} 
-                            onClick={() => this.props.removeItem(element)} >Remove</button></li>
+                        this.props.arryData.map((element) => {
+                            return <li key={element}>{element}</li>
                         })
                     }
                 </ul>
@@ -169,11 +136,9 @@ class Form extends React.Component {
 
         const error = this.props.handleAddOptions(val);
 
-        // this.setState(() => {
-        //     return {error}
-        // });
-
-        this.setState(() => ({error}));
+        this.setState(() => {
+            return {error}
+        });
 
         e.target.elements.optionInput.value = '';
     }
@@ -191,11 +156,8 @@ class Form extends React.Component {
             
         )
     }
+
 }
-
-const emptyObjectArrow = () => ({});
-
-console.log(emptyObjectArrow);
 
 // stateless, functional component- > pretension like header
 const User = (props) => {

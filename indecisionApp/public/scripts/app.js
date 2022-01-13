@@ -21,7 +21,7 @@ var CounterApp = function (_React$Component) {
         _this.resetFunc = _this.resetFunc.bind(_this);
 
         _this.state = {
-            counter: 0,
+            counter: 10,
             name: "taha"
         };
         return _this;
@@ -51,21 +51,18 @@ var CounterApp = function (_React$Component) {
                     counter: 0
                 };
             });
-
-            // this.setState({
-            //     counter : 0
-            // });
         }
     }, {
         key: "componentDidMount",
         value: function componentDidMount() {
             try {
                 console.log("component mountted");
-                var val = parseInt(localStorage.getItem("counter"));
-                console.log(val);
-                this.setState(function () {
-                    return { counter: val };
-                });
+                var val = parseInt(localStorage.getItem("counter"), 10);
+                if (val) {
+                    this.setState(function () {
+                        return { counter: val };
+                    });
+                }
             } catch (e) {}
         }
     }, {

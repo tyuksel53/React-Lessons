@@ -7,7 +7,7 @@ class CounterApp extends React.Component {
         this.resetFunc = this.resetFunc.bind(this);
         
         this.state = {
-            counter : 0,
+            counter : 10,
             name : "taha"
         };
     }
@@ -30,19 +30,15 @@ class CounterApp extends React.Component {
                 counter : 0
             }
         });
-
-        // this.setState({
-        //     counter : 0
-        // });
     }
 
     componentDidMount() {
         try{
             console.log("component mountted");
-            const val = parseInt(localStorage.getItem("counter"));
-            console.log(val);
-            this.setState(() => ({counter : val}));
-
+            const val = parseInt(localStorage.getItem("counter"),10);
+            if(val){
+                this.setState(() => ({counter : val}));
+            }
         }catch(e) {
 
         }

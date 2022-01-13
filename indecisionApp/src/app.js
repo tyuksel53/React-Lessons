@@ -2,16 +2,26 @@
 
 import subtract, { square , addFunc  } from './utils.js';
 
-console.log("app.js is running ");
+//import validator from 'validator'; // default export usage case
 
-console.log(square(3));
+import React from 'react';
 
-console.log(addFunc(1,5))
+import ReactDOM from 'react-dom';
 
-import { isAdult, canDrink } from './person.js';
+import IndecisionApp from './components/IndecisionApp';
 
-console.log(isAdult(12));
+const emptyObjectArrow = () => ({});
 
-console.log(canDrink(25));
+console.log(emptyObjectArrow);
 
-console.log(subtract(1,7));
+// stateless, functional component- > pretension like header
+const User = (props) => {
+  return (
+    <div>
+        <p>Name: {props.name}</p>
+        <p>Age: {props.age}</p>
+    </div>
+  );   
+};
+
+ReactDOM.render(<IndecisionApp options={['Devils den', 'Second District']} />, document.getElementById('app'))

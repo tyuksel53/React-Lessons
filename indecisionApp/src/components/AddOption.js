@@ -2,15 +2,11 @@ import React from 'react';
 
 export default class AddOption extends React.Component {
 
-    constructor(props){
-        super(props);
-        this.onSubmitForm = this.onSubmitForm.bind(this);
-        this.state = {
-            error : undefined
-        }
+    state = {
+        error : undefined
     }
 
-    onSubmitForm(e) {
+    onSubmitForm = (e) => {
         e.preventDefault();
         
         let val = e.target.elements.optionInput.value;

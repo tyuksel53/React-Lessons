@@ -57,7 +57,6 @@ export default class IndecisionApp extends React.Component {
         this.setState(() => ({
             options: []
         }));
-
     }
 
     handleAddOptions(val) {

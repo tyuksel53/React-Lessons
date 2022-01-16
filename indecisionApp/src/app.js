@@ -24,4 +24,27 @@ const User = (props) => {
   );   
 };
 
-ReactDOM.render(<IndecisionApp options={['Devils den', 'Second District']} />, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp options={['Devils den', 'Second District']} />, document.getElementById('app'));
+
+class OldSyntax {
+  
+  constructor(props){
+    this.name = 'Mike';
+  }
+
+}
+
+const variableOldSyntax = new OldSyntax();
+
+console.log(variableOldSyntax);
+
+// ------
+
+
+class NewSyntax {
+  name = "Jane";
+}
+
+const variableNewSyntax = new NewSyntax();
+
+console.log(variableNewSyntax);

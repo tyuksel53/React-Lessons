@@ -16,19 +16,46 @@ export default class Options extends React.Component {
     }
 
     render() {
-        console.log('option rendered');
         return (
             <div>
-                <button onClick={this.removeAll} >Remove All</button>
-                {this.props.arryData.length == 0 && <div><p>insert some elemet </p></div>}
-                <ul>
-                    {
-                        this.props.arryData.map((element, i) => {
-                            return <li key={i}>{element}  <button id={i} 
-                            onClick={() => this.props.removeItem(element)} >Remove</button></li>
-                        })
-                    }
-                </ul>
+                <div className='widget-header'>
+                    <h3 className='widget--header__title' >Your options</h3>
+                    <button 
+                        className='button button--link'
+                        onClick={this.removeAll}
+                    >
+                        Remove All
+                    </button>
+                </div>
+                
+                {
+                    this.props.arryData.length == 0 && (
+                        <div>
+                            <p 
+                                className='widget__message'
+                                >
+                                Please add an option to get started!
+                            </p>
+                        </div>)
+                }
+                {
+                    this.props.arryData.map((element, i) => {
+                        return (
+                        <div 
+                            className='option'
+                            key={i}
+                        >
+                            <p className='option__text' >{i+1}. {element}</p>
+                            <button 
+                                className='button button--link'
+                                id={i} 
+                                onClick={() => this.props.removeItem(element)}
+                            >
+                                Remove
+                            </button>
+                        </div>)
+                    })
+                }
             </div>
         );
     }

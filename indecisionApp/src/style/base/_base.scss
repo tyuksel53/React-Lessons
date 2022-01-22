@@ -1,4 +1,23 @@
 
+html {
+    font-size: 62.5%;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
 body  {
     font-family :  'Times New Roman', Times, serif;
+    color : black;
+    font-size: $m-size;
+    background: $dark-blue;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+     cursor: default;
 }

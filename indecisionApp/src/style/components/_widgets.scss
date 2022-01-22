@@ -1,0 +1,30 @@
+.widget {
+    background: $light-blue;
+    margin-bottom: $m-size;
+}
+
+.widget__message {
+    text-align: center;
+    border-bottom: 1px solid darken($color: $light-blue, $amount: 10);
+    padding: $l-size;
+    margin: 0;
+    color: $off-white;
+}
+
+.widget-header {
+    background: $blue;
+    color: $off-white;
+    padding: $m-size;
+    display: flex;
+    justify-content: space-between; // space'leri aralara koy
+}
+
+.widget--header__title {
+    margin: 0;
+}
+
+@media (min-width:$desktop-breakpoint) {
+    .widget {
+        margin-bottom: $xl-size;
+    }
+}

@@ -1,6 +1,6 @@
 // import './utils.js';
 
-import subtract, { square , addFunc  } from './utils.js';
+// import subtract, { square , addFunc  } from './utils.js';
 
 //import validator from 'validator'; // default export usage case
 
@@ -9,6 +9,8 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 
 import IndecisionApp from './components/IndecisionApp';
+
+import 'normalize.css/normalize.css'
 
 import './style/styles.scss'
 

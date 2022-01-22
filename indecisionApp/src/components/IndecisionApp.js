@@ -84,13 +84,30 @@ export default class IndecisionApp extends React.Component {
         return (
             <div>
                 {this.props.children}
-                <Header subtitle={this.props.name} />
-                <Action hasOptions={this.state.options.length == 0} fireEvent={this.handleActionCommand}/>
-                <Options arryData={this.state.options} removeAllFnc={this.handleResetOptions} removeItem={this.handleRemoveItem} />
-                <AddOption 
-                    arrayData={this.state.options}
-                    handleAddOptions={this.handleAddOptions}
+                
+                <Header
+                    subtitle={this.props.subtitle} 
+                />
+                
+                <div className='container'>
+                    <Action 
+                        hasOptions={this.state.options.length == 0} 
+                        fireEvent={this.handleActionCommand}
                     />
+                    <div className='widget' >
+                        <Options 
+                            arryData={this.state.options} 
+                            removeAllFnc={this.handleResetOptions}
+                            removeItem={this.handleRemoveItem} 
+                        />
+                        
+                        <AddOption 
+                            arrayData={this.state.options}
+                            handleAddOptions={this.handleAddOptions}
+                        />
+                    </div>
+                </div>
+                
                 <OptionModal 
                     selectedOption={this.state.selectedOption}
                     closeModal={this.closeModal}
@@ -102,5 +119,5 @@ export default class IndecisionApp extends React.Component {
 
 IndecisionApp.defaultProps = {
     options : [],
-    name : "taha"
+    subtitle : "Put your life in hands of a computer"
 }
